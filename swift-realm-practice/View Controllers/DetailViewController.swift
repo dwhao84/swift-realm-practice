@@ -12,8 +12,16 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     private let tableView = UITableView()
+        
     private var products: Results<Product>?
-    private let realm = try! Realm()
+    // MARK: - 把products變成Realm的container的種類，讓Realm可以變成物件。
+    /*
+    `Results` is an auto-updating container type in Realm returned from object queries.
+    `Results` can be queried with the same predicates as `List<Element>`, and you can
+    chain queries to further filter query results.
+    */
+    
+    private let realm = try! Realm() // 用try的寫法，串接Realm
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -54,6 +62,7 @@ class DetailViewController: UIViewController {
     }
     
     // MARK: - Data Handling
+    //
     private func loadData() {
         // 按照時間戳降序排列，最新的數據在前面
         products = realm.objects(Product.self).sorted(byKeyPath: "timestamp", ascending: false)

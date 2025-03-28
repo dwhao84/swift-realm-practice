@@ -58,7 +58,6 @@ class FirstViewController: UIViewController {
         
         setupUI()
         setupActions()
-        setupRealm()
     }
     
     // MARK: - UI Setup
@@ -164,18 +163,6 @@ class FirstViewController: UIViewController {
         let alert = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確定", style: .default))
         present(alert, animated: true)
-    }
-    
-    func setupRealm () {
-        let product = Product()
-        product.articleNumber = "123456789"
-        product.location = "A1"
-        product.qty = 10
-        
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(product)
-        }
     }
 }
 
